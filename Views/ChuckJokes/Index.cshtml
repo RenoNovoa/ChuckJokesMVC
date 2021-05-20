@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model JokeViewModel
+
+<h1>Welcome to the Chuck Norries View</h1>
+
+<img src="@Model.icon_url" />
+
+<h2> @Model.value</h2>
+
+<form asp-controller="ChuckJokes" asp-action="GetRandomJokesByCategory">
+    <select name="category">
+
+        <option selected disabled>Select a Category</option>
+
+        @foreach (var category in Enum.GetValues(typeof(Categories)))
+        {
+           
+            <option value="@Enum.Parse(typeof(Categories), category)">@category.ToUpper()</option>
+            //<option value="@category">@category.ToString().ToUpper()</option>
+        }
+    </select>
+
+    <button class=" btn btn-danger" type="submit">Push The CuckNorris Button!</button>
+</form>
+
+
